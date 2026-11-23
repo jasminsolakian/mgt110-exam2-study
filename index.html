@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive MGT 110 Exam 2 study lab covering individual differences, workplace stress, decision making, communication, motivation, and teams.">
+  <title>MGT 110 Exam 2 Study Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">✿</div><div><strong>MGT 110</strong><span>Exam 2 Study Lab</span></div></div>
+      <nav class="main-nav" aria-label="Study modes">
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span>Dashboard</button>
+        <button class="nav-item" data-view="learn"><span>◫</span>Learn</button>
+        <button class="nav-item" data-view="flashcards"><span>◇</span>Flashcards</button>
+        <button class="nav-item" data-view="quiz"><span>✓</span>Practice exam</button>
+        <button class="nav-item" data-view="glossary"><span>⌕</span>Glossary</button>
+      </nav>
+      <div class="course-map"><p class="eyebrow">Course map</p><div id="sidebar-units"></div></div>
+      <div class="sidebar-footer"><button class="text-button" id="reset-progress">Reset progress</button><span>Progress saves on this device.</span></div>
+    </aside>
+
+    <div class="page">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menu-button" aria-label="Open menu">☰</button>
+        <label class="search-wrap"><span>⌕</span><input id="global-search" type="search" placeholder="Search any concept..." aria-label="Search concepts"><kbd>/</kbd></label>
+        <div class="top-progress"><span id="top-progress-text">0% ready</span><div><i id="top-progress-bar"></i></div></div>
+      </header>
+
+      <main id="main">
+        <section class="view active" id="view-dashboard" aria-labelledby="dashboard-title">
+          <article class="hero">
+            <div class="hero-copy">
+              <p class="eyebrow light">Exam 2 · Application-focused practice</p>
+              <h1 id="dashboard-title">Study smart.<br><em>Stay cozy.</em></h1>
+              <p>Master people, stress, communication, decisions, motivation, and teams with your tiny study squad—one bite-size lesson at a time.</p>
+              <div class="hero-actions"><button class="primary-button" id="continue-button">Start learning →</button><button class="secondary-button light-button" data-go="quiz">Take a quick quiz</button></div>
+            </div>
+            <div class="hero-visual" aria-label="Four animal study buddies">
+              <span class="sparkle sparkle-one">✦</span><span class="sparkle sparkle-two">✿</span><span class="sparkle sparkle-three">★</span>
+              <img src="study-squad.png" alt="A bunny, cat, frog, and bear studying together">
+              <div class="progress-orb"><strong id="hero-progress">0%</strong><span>Ready</span></div>
+            </div>
+          </article>
+
+          <div class="dashboard-grid">
+            <section class="panel">
+              <div class="panel-heading"><div><p class="eyebrow">Your progress</p><h2>Six exam domains</h2></div><span id="lesson-total">0 / 29 lessons</span></div>
+              <div class="unit-cards" id="unit-cards"></div>
+            </section>
+            <section class="panel readiness-panel">
+              <p class="eyebrow">Readiness pulse</p><h2 id="readiness-label">Let’s establish your baseline</h2>
+              <div class="readiness-meter"><i id="readiness-bar"></i></div>
+              <p id="readiness-copy">Complete lessons and quizzes to build your readiness score.</p>
+              <button class="secondary-button" data-go="quiz">Check readiness</button>
+            </section>
+          </div>
+
+          <section class="panel study-plan"><p class="eyebrow">Recommended path</p><h2>Study in the order concepts connect</h2><div class="path-line" id="path-line"></div></section>
+          <section class="exam-tip"><div class="tip-number">01</div><div><p class="eyebrow">How this exam thinks</p><h2>Definitions are the starting line, not the finish.</h2><p>For every idea, practice identifying an example, rejecting a near-miss, and predicting a workplace outcome. That is the pattern behind the scenario questions in this site.</p></div></section>
+        </section>
+
+        <section class="view" id="view-learn" aria-labelledby="learn-title">
+          <header class="section-header"><div><p class="eyebrow">Guided lessons</p><h1 id="learn-title">Learn the concepts</h1><p>Short explanations, workplace applications, and contrasts that expose common traps.</p></div><label class="select-wrap">Unit <select id="unit-filter"></select></label></header>
+          <div class="learn-layout"><nav class="lesson-list" id="lesson-list" aria-label="Lessons"></nav><article class="panel lesson-content" id="lesson-content"></article></div>
+        </section>
+
+        <section class="view" id="view-flashcards" aria-labelledby="flash-title">
+          <header class="section-header"><div><p class="eyebrow">Active recall</p><h1 id="flash-title">Flashcards</h1><p>Say the answer aloud before you flip. Mark the cards honestly.</p></div><div class="deck-stats"><strong id="flash-position">1 / 40</strong><span id="flash-known">0 known</span></div></header>
+          <div class="flash-stage">
+            <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Flip flashcard"><div class="flash-inner"><div class="flash-face flash-front"><span id="flash-unit"></span><p id="flash-question"></p><small>Click or press Space to reveal</small></div><div class="flash-face flash-back"><span>Answer</span><p id="flash-answer"></p><small id="flash-source"></small></div></div></div>
+            <div class="flash-controls"><button class="rating-button again" data-rating="again">↺ Study again</button><button class="icon-button" id="flash-prev" aria-label="Previous card">←</button><button class="icon-button" id="flash-next" aria-label="Next card">→</button><button class="rating-button know" data-rating="know">✓ I know this</button></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-quiz" aria-labelledby="quiz-title">
+          <div id="quiz-setup">
+            <header class="section-header"><div><p class="eyebrow">Scenario practice</p><h1 id="quiz-title">Practice exam</h1><p>Choose a focused sprint or simulate the full 45-question exam.</p></div></header>
+            <div class="quiz-options">
+              <button class="quiz-option" data-count="10"><span>Quick check</span><strong>10</strong><small>questions · all units</small></button>
+              <button class="quiz-option featured" data-count="20"><span>Study sprint</span><strong>20</strong><small>questions · all units</small></button>
+              <button class="quiz-option" data-count="45"><span>Exam simulation</span><strong>45</strong><small>questions · full bank</small></button>
+            </div>
+            <div class="panel quiz-notes"><p>Built like your guide: conceptual understanding, distinctions, and workplace application. Explanations appear after each answer so every mistake becomes a lesson.</p></div>
+          </div>
+          <div id="quiz-runner" hidden>
+            <div class="quiz-top"><button class="text-button" id="quit-quiz">← Exit</button><strong id="quiz-counter"></strong><div class="quiz-progress"><i id="quiz-progress-bar"></i></div></div>
+            <article class="panel quiz-card"><p class="eyebrow" id="quiz-unit"></p><h2 id="quiz-question"></h2><div class="answer-list" id="quiz-answers"></div><div class="quiz-feedback" id="quiz-feedback" hidden></div><button class="primary-button" id="next-question" hidden>Next question →</button></article>
+          </div>
+          <div id="quiz-results" hidden></div>
+        </section>
+
+        <section class="view" id="view-glossary" aria-labelledby="glossary-title">
+          <header class="section-header"><div><p class="eyebrow">Fast reference</p><h1 id="glossary-title">Glossary</h1><p>Review the precise distinctions that make scenario questions easier.</p></div></header>
+          <div class="glossary-tools"><input id="glossary-search" type="search" placeholder="Filter terms..." aria-label="Filter glossary terms"><div id="alpha-filter"></div></div>
+          <div class="glossary-grid" id="glossary-grid"></div>
+        </section>
+
+        <section class="view" id="view-search" aria-labelledby="search-summary"><header class="section-header"><div><p class="eyebrow">Search</p><h1 id="search-summary">Search results</h1></div></header><div class="search-results" id="search-results"></div></section>
+      </main>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
